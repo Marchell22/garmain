@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Kredit extends Model
 {
     use HasFactory;
+    protected $table    = 'peminjaman';
+
     protected $fillable = [
         'nama',
         'alamat',
         'noKTP',
-        'jenisBarang',
-        'merkBarang',
-        'tipeBarang',
-        'hargaBarang',
+        'document',
+        'ktp',
+        'stnk',
+        'kk',
+        'uraian_barang',
     ];
 
-    public function fileUploads()
-    {
-        return $this->hasMany(FileUpload::class, 'ownerName', 'nama');
-    }
+    // If you need to cast 'uraian_barang' as an array
+    protected $casts = [
+        'uraian_barang' => 'array',
+    ];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FileUpload;
 use App\Models\Kredit;
+use App\Models\PengajuanKredit;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -45,50 +46,61 @@ class PageController extends Controller
             'totalAngsuran'
         ));
     }
-    public function PengajuanKredit(){
+    public function PengajuanKredit()
+    {
         return view('page.pengajuanKredit');
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
-            'noKTP' => 'required|string|max:16',
-            'jenis_barang.*' => 'required|string|max:255',
-            'merk_barang.*' => 'required|string|max:255',
-            'tipe_barang.*' => 'required|string|max:255',
-            'harga_barang.*' => 'required|numeric',
-            'document' => 'required|file|mimes:jpg,jpeg,png,pdf,zip,rar|max:5000',
-            'KTP' => 'required|file|mimes:jpg,jpeg,png,pdf,zip,rar|max:5000',
-            'STNK' => 'required|file|mimes:jpg,jpeg,png,pdf,zip,rar|max:5000',
-            'KK' => 'required|file|mimes:jpg,jpeg,png,pdf,zip,rar|max:5000',
+            'noKTP' => 'required|numeric',
+            'barang' => 'required|array',
+            'barang.*.jenis_barang' => 'required|string',
+            'barang.*.merk_barang' => 'required|string',
+            'barang.*.tipe_barang' => 'required|string',
+            'barang.*.harga_barang' => 'required|numeric',
+            'document' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
+            'KTP' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
+            'STNK' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
+            'KK' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
         ]);
 
-        // Create Kredit record
-        $kredit = Kredit::create([
-            'nama' => $validatedData['nama'],
-            'alamat' => $validatedData['alamat'],
-            'noKTP' => $validatedData['noKTP'],
-            'jenisBarang' => implode(',', $validatedData['jenis_barang']),
-            'merkBarang' => implode(',', $validatedData['merk_barang']),
-            'tipeBarang' => implode(',', $validatedData['tipe_barang']),
-            'hargaBarang' => implode(',', $validatedData['harga_barang']),
-        ]);
+        // Storing the form data
+        $kredit = new Kredit();
+        $kredit->nama = $request->nama;
+        $kredit->alamat = $request->alamat;
+        $kredit->noKTP = $request->noKTP;
+        $kredit->uraian_barang = json_encode($request->barang); // Storing the item details as JSON
+        $kredit->save();
 
-        // Upload files
-        foreach (['document', 'KTP', 'STNK', 'KK'] as $fileType) {
-            $file = $request->file($fileType);
-            $path = $file->store('uploads');
-
-            FileUpload::create([
-                'fileName' => $file->getClientOriginalName(),
-                'filePath' => $path,
-                'ownerName' => $kredit->nama,
-            ]);
+        // Handle file uploads
+        if ($request->hasFile('document')) {
+            $documentPath = $request->file('document')->store('documents');
+            $kredit->document = $documentPath;
+        }
+        if ($request->hasFile('KTP')) {
+            $ktpPath = $request->file('KTP')->store('documents');
+            $kredit->ktp = $ktpPath;
+        }
+        if ($request->hasFile('STNK')) {
+            $stnkPath = $request->file('STNK')->store('documents');
+            $kredit->stnk = $stnkPath;
+        }
+        if ($request->hasFile('KK')) {
+            $kkPath = $request->file('KK')->store('documents');
+            $kredit->kk = $kkPath;
         }
 
-        return redirect()->back()->with('success', 'Kredit application submitted successfully!');
+        // Save the record again to include file paths
+        $kredit->save();
+
+        // Return a success response
+        return response()->json([
+            'message' => 'Data successfully created.',
+            'redirect_url' => route('PengajuanKredit')
+        ]);
     }
-    
 }

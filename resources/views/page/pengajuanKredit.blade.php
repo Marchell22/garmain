@@ -7,6 +7,8 @@
     <title>Global Auto Finance</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!--CSS-->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
@@ -176,26 +178,68 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Get the CSRF token from the meta tag
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            // Handle form submission
+            $("form").on("submit", function(e) {
+                e.preventDefault();
+                let formData = new FormData(this); // Use FormData to capture all form data, including files
+
+                // Add the item details manually to the FormData object
+                $("input[name='jenis_barang[]']").each(function(index) {
+                    formData.append(`barang[${index}][jenis_barang]`, $(this).val());
+                    formData.append(`barang[${index}][merk_barang]`, $(
+                        "input[name='merk_barang[]']").eq(index).val());
+                    formData.append(`barang[${index}][tipe_barang]`, $(
+                        "input[name='tipe_barang[]']").eq(index).val());
+                    formData.append(`barang[${index}][harga_barang]`, $(
+                        "input[name='harga_barang[]']").eq(index).val());
+                });
+
+                $.ajax({
+                    url: "{{ route('kredit.store') }}",
+                    type: "POST",
+                    data: formData,
+                    contentType: false, // Necessary for file upload
+                    processData: false, // Necessary for file upload
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
+                            'content') // Include the CSRF token in the headers
+                    },
+                    success: function(response) {
+                        // Handle success - redirect, show a message, etc.
+                        console.log("Form submitted successfully!", response);
+                        window.location.href = response
+                            .redirect_url; // Redirect to a success page or another route
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors
+                        console.log("Error submitting form", error);
+                    }
+                });
+            });
+
             $(".add_item_btn").click(function(e) {
                 e.preventDefault();
                 $("#show_item").prepend(
                     `<div class="row">
-                        <div class="col-md-3 mb-3">
-                            <input type="text" name="jenis_barang[]" class="form-control" placeholder="Jenis Barang" required>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <input type="text" name="merk_barang[]" class="form-control" placeholder="Merk Barang" required>
-                        </div>
-                        <div class="col-md-2 mb-3">
-                            <input type="text" name="tipe_barang[]" class="form-control" placeholder="Tipe Barang" required>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <input type="number" name="harga_barang[]" class="form-control" placeholder="Harga Kredit" required>
-                        </div>
-                        <div class="col-md-2 mb-3 d-grid">
-                            <button class="btn btn-danger remove_item_btn">Hapus</button>
-                        </div>
-                    </div>`
+                    <div class="col-md-3 mb-3">
+                        <input type="text" name="jenis_barang[]" class="form-control" placeholder="Jenis Barang" required>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <input type="text" name="merk_barang[]" class="form-control" placeholder="Merk Barang" required>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <input type="text" name="tipe_barang[]" class="form-control" placeholder="Tipe Barang" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <input type="number" name="harga_barang[]" class="form-control" placeholder="Harga Kredit" required>
+                    </div>
+                    <div class="col-md-2 mb-3 d-grid">
+                        <button class="btn btn-danger remove_item_btn">Hapus</button>
+                    </div>
+                </div>`
                 );
             });
 
@@ -205,7 +249,11 @@
                 $(row_item).remove();
             });
         });
+
+        // Function to gather all form data
+       
     </script>
+
 
     <!-- Vendor JS Files -->
     <script src="{{ asset('BizLand/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
