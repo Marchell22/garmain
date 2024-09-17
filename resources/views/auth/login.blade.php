@@ -81,9 +81,9 @@
                         <li><a href="{{ route('index') }}#about">About</a></li>
                         <li><a href="{{ route('index') }}#services">Services</a></li>
                         <li><a href="{{ route('index') }}#contact">Contact</a></li>
-                        <li><a href="{{ route('calculator') }}" class="active">Calculator</a></li>
+                        <li><a href="{{ route('calculator') }}">Calculator</a></li>
                         <li><a href="{{ route('PengajuanKredit') }}">Pengajuan Kredit</a></li>
-                        <li><a href="{{ route('login') }}">Login</a></li>
+                        <li><a href="{{ route('login') }}"class="active">Login</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
@@ -91,98 +91,13 @@
             </div>
 
         </div>
-
     </header>
-    <main class="main">
-        <header class="page-header gradient mt-5 pt-5">
-            <h1 class="text-center pt-5" id="header-title">SIMULASI KREDIT</h1>
-            <div class="container">
-                <div class="row gx-5 align-items-center justify-content-center">
-                    <div class="col-md-5">
-                        <form action="{{ route('credit.simulation.calculate') }}" method="post">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="jumlahPinjaman" class="form-label">Jumlah Pinjaman</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Rp</span>
-                                    <input type="number" class="form-control" name="inputJumlahPinjaman"
-                                        value="{{ old('inputJumlahPinjaman') }}">
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="Tenor" class="form-label">Lama Pinjaman (Tenor)</label>
-                                <div class="input-group mb-3">
-                                    <input type="number" class="form-control" name="inputTenor"
-                                        value="{{ old('inputTenor') }}">
-                                    <span class="input-group-text">Bulan</span>
-                                </div>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="Bunga" class="form-label">Bunga Pinjaman</label>
-                                <div class="input-group mb-3">
-                                    <input type="number" class="form-control" name="bunga"
-                                        value="{{ old('bunga') }}">
-                                    <span class="input-group-text">% / tahun</span>
-                                </div>
-                            </div>
-
-                            <button type="submit" name="submit" class="btn btn-light">Hitung</button>
-                        </form>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-6">
-                                Jumlah pinjaman <br>
-                                Lama Pinjaman (Tenor) <br>
-                                Bunga / tahun <br>
-                                Bunga / bulan <br>
-                                Angsuran Pokok / BULAN <br>
-                                Angsuran Bunga / BULAN <br><br>
-                                <h4>Total Angsuran / BULAN <br></h4>
-                            </div>
-                            <div class="col-md-6">
-                                @if (isset($jumlahPinjaman))
-                                    : Rp {{ number_format($jumlahPinjaman, 0, ',', '.') }} <br>
-                                    : {{ $tenor }} bulan <br>
-                                    : {{ $bungaPersen }} % / tahun <br>
-                                    : {{ $bungaPerBulanPersen }} % / bulan <br>
-                                    : Rp {{ number_format($angsuranPokokPerBulan, 0, ',', '.') }} <br>
-                                    : Rp {{ number_format($angsuranBungaPerBulan, 0, ',', '.') }} <br><br>
-                                    <h4> : Rp {{ number_format($totalAngsuran, 0, ',', '.') }} <br>
-                                        <h4>
-                                        @else
-                                            : <br>
-                                            : <br>
-                                            : <br>
-                                            : <br>
-                                            : <br>
-                                            : <br><br>
-                                            <h4> : <br>
-                                                <h4>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container mt-5">
-                    <p>Simulasi ini untuk kredit secara umum. Silahkan masukkan angka-angka yang sesuai dengan
-                        kolom-kolom berikut. Tekan tombol HITUNG untuk mengkalkulasikan kredit anda. Jumlah cicilan tiap
-                        bulan atau tiap tahun akan diketahui kemudian.</p>
-                </div>
-            </div>
-        </header>
-    </main>
     <!-- Preloader -->
     <div id="preloader">
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-        
     </div>
 
     <!-- Vendor JS Files -->

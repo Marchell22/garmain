@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::get('/calculator', [PageController::class, 'calculator'])->name('calculat
 Route::post('/credit-simulation', [PageController::class, 'calculate'])->name('credit.simulation.calculate');
 Route::get('/PengajuanKredit', [PageController::class, 'PengajuanKredit'])->name('PengajuanKredit');
 Route::post('/kredit/store', [PageController::class, 'store'])->name('kredit.store');
+Route::get('/Login', [LoginController::class, 'login'])->name('login');
+Route::post('/login-proses', [loginController::class, 'login_proses'])->name('login-proses');
+Route::get('/logout', [loginController::class, 'logout'])->name('logout');

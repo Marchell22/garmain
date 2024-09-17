@@ -38,6 +38,7 @@
   ======================================================== -->
 </head>
 
+
 <body class="index-page">
 
     <header id="header" class="header sticky-top">
@@ -69,12 +70,13 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="#hero" class="active">Home</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li> 
+                        <li><a href="{{ route('index') }}">Home</a></li>
+                        <li><a href="{{ route('index') }}#about">About</a></li>
+                        <li><a href="{{ route('index') }}#services">Services</a></li>
+                        <li><a href="{{ route('index') }}#contact">Contact</a></li>
                         <li><a href="{{ route('calculator') }}">Calculator</a></li>
                         <li><a href="{{ route('PengajuanKredit') }}">Pengajuan Kredit</a></li>
+                        <li><a href="{{ route('login') }}">Login</a></li> 
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
