@@ -103,4 +103,8 @@ class PageController extends Controller
             'redirect_url' => route('PengajuanKredit')
         ]);
     }
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
 }

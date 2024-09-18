@@ -172,13 +172,8 @@
 
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="{{ route('index') }}">Home</a></li>
-                        <li><a href="{{ route('index') }}#about">About</a></li>
-                        <li><a href="{{ route('index') }}#services">Services</a></li>
-                        <li><a href="{{ route('index') }}#contact">Contact</a></li>
-                        <li><a href="{{ route('calculator') }}">Calculator</a></li>
-                        <li><a href="{{ route('PengajuanKredit') }}">Pengajuan Kredit</a></li>
-                        <li><a href="{{ route('login') }}"class="active">Login</a></li>
+                        <li><a href="{{ route('dashboard') }}" class="active">Dashboard</a></li>
+                         <li><a href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
@@ -189,7 +184,7 @@
     </header>
     <div class="container-fluid">
 
-        <div class="row justify-content-center" style="margin-top:5rem!important;">
+        {{-- <div class="row justify-content-center" style="margin-top:5rem!important;">
             <div class="col-md-6 col-lg-4">
                 <div class="card">
                     <div class="background-container">
@@ -225,7 +220,7 @@
                 </div>
 
             </div>
-        </div>
+        </div> --}}
     </div>
     <!-- Preloader -->
     <div id="preloader">
