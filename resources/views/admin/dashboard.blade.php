@@ -162,7 +162,7 @@
         </div>
         <!-- Modal Structure -->
         <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-            <div class="modal-dialog" style="top: 9rem !important;">
+            <div class="modal-dialog" style="top: 6rem !important;">
                 <div class="modal-content" style="width: 180%;right: 40%;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="detailModalLabel">Detail Information</h5>
