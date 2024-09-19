@@ -7,6 +7,8 @@
     <title>Global Auto Finance</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!--CSS-->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
@@ -15,14 +17,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS (for modal functionality) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Favicons -->
     <link href="{{ asset('Bizland/assets/img/favicon.png') }}" rel="icon">
     <link href="{{ asset('Bizland/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
@@ -46,98 +51,27 @@
   ======================================================== -->
 </head>
 <style>
-    .header{
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .container-fluid {
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 10px;
-    }
-
-    .card {
-        border-radius: 10px;
+    .header {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
-    .card-header {
-        background-color: #f8f9fa;
-        border-bottom: none;
-        padding: 20px 30px;
-        font-size: 24px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .modal-dialog.modal-top {
+        margin-top: 50px;
+        /* Adjust this value to control how far down from the top the modal appears */
     }
 
-    .card-header img {
-        max-width: 100%;
-        /* IE8 */
-        display: block;
-        margin: 0 auto;
-    }
-
-    .card-header .header-content {
-        flex: 1;
-        text-align: center;
-    }
-
-    .card-header .header-content:last-child {
-        text-align: right;
-    }
-
-    .card-body {
-        padding: 30px;
-    }
-
-    .form-group {
+    .modal-dialog.modal-bottom {
+        margin-top: auto;
         margin-bottom: 20px;
+        /* Add some spacing from the bottom */
     }
 
-    .btn-primary {
-        background-color: #12ACED;
-        border-color: #12ACED;
-        padding: 12px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        width: 100%;
-    }
-
-    .btn-primary:hover {
-        background-color: #0069d9;
-        border-color: #0062cc;
-    }
-
-    .btn-block {
-        display: block;
-    }
-
-    .mt-4 {
-        margin-top: 1.5rem;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .text-center a {
-        color: #007bff;
-    }
-
-    .img-container {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .img-container img {
-        max-width: 100%;
-        height: auto;
-        width: auto\9;
-        /* IE8 */
-    }
-
-    .alert {
-        margin-bottom: 0;
+    .modal-dialog.custom-position {
+        position: absolute;
+        top: 30%;
+        /* Adjust these values for custom position */
+        left: 25%;
+        transform: translate(-25%, -30%);
     }
 </style>
 
@@ -173,7 +107,7 @@
                 <nav id="navmenu" class="navmenu">
                     <ul>
                         <li><a href="{{ route('dashboard') }}" class="active">Dashboard</a></li>
-                         <li><a href="{{ route('logout') }}">Logout</a></li>
+                        <li><a href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
@@ -182,66 +116,187 @@
 
         </div>
     </header>
-    <div class="container-fluid">
+    <div class="container mt-5">
+        <div class="row my-4 mt-5">
+            <div class="col-lg-12 mx-auto mb-5">
 
-        {{-- <div class="row justify-content-center" style="margin-top:5rem!important;">
-            <div class="col-md-6 col-lg-4">
-                <div class="card">
-                    <div class="background-container">
+                <div class="card shadow gradient">
+                    <div class="card-header my-auto">
+                        <h4 class="my-auto" style="color: white">Dashboard</h4>
                     </div>
-                    <div class="img-container d-flex justify-content-between" style="margin-top: 20px;">
-                    </div>
-                    <h2 class="text-center" style="margin-top: 5px; font-weight: bold;">LOGIN </h2>
-                    <div class="card-body login-form">
-                        <form method="POST" action="{{ route('login-proses') }}">
-                            @csrf
+                    <div class="card-box mb-30">
 
-                            <div class="form-group">
-                                <label for="username">Username:</label>
-                                <input type="text" name="username" class="form-control" id="username" required>
-                            </div>
-                            @error('username')
-                                <small>{{ $username }}</small>
-                            @enderror
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" name="password" class="form-control" id="password" required>
-                            </div>
-                            @error('password')
-                                <small>{{ $password }}</small>
-                            @enderror
-
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-primary btn-block" name="login"><a
-                                        href="/beranda" style="color:#fff "><b>Login</a></b></button>
-                            </div>
-                        </form>
+                        <div class="pb-10 pd-2">
+                            <table class="data-table table ">
+                                <thead>
+                                    <tr>
+                                        {{-- <th class="table-plus datatable-nosort">Name</th> --}}
+                                        <th>No</th>
+                                        <th class="table-plus datatable-nosort">Nama</th>
+                                        <th class="table-plus datatable-nosort">Alamat</th>
+                                        <th class="table-plus datatable-nosort">Nomor KTP</th>
+                                        <th class="table-plus datatable-nosort">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($data as $d)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $d->nama }}</td>
+                                            <td>{{ $d->alamat }} </td>
+                                            <td>{{ $d->noKTP }} </td>
+                                            <td>
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                                    data-bs-target="#detailModal" data-id="{{ $d->id }}">
+                                                    Detail
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div> --}}
-    </div>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+        </div>
+        <!-- Modal Structure -->
+        <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="top: 9rem !important;">
+                <div class="modal-content" style="width: 180%;right: 40%;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailModalLabel">Detail Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Jenis Barang</th>
+                                    <th>Merek Barang</th>
+                                    <th>Tipe Barang</th>
+                                    <th>Harga Barang</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-content">
+                                <!-- Content will be loaded here via AJAX -->
+                            </tbody>
+                        </table>
+                        <div class="form-group row" style="padding: 10px;">
+                            <label class=" col-sm-12 col-md-2 col-form-label" for="document">Document</label>
+                            <div class="col-sm-12 col-md-10">
+                                <button type="button" class="btn btn-success" id="download-document">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding: 10px;">
+                            <label class=" col-sm-12 col-md-2 col-form-label" for="document">KTP</label>
+                            <div class="col-sm-12 col-md-10">
+                                <button type="button" class="btn btn-success" id="download-ktp">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding: 10px;">
+                            <label class=" col-sm-12 col-md-2 col-form-label" for="document">STNK</label>
+                            <div class="col-sm-12 col-md-10">
+                                <button type="button" class="btn btn-success" id="download-stnk">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding: 10px;">
+                            <label class=" col-sm-12 col-md-2 col-form-label" for="document">Kartu Keluarga</label>
+                            <div class="col-sm-12 col-md-10">
+                                <button type="button" class="btn btn-success" id="download-kk">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('BizLand/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
-    <!-- Main JS File -->
-    <script src="{{ asset('BizLand/assets/js/main.js') }}"></script>
+        <!-- Preloader -->
+        <div id="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // When a button is clicked
+                $('[data-bs-toggle="modal"]').on('click', function() {
+                    // Get the ID from the data-id attribute
+                    var recordId = $(this).data('id');
+
+                    // Fetch data for the record using AJAX
+                    $.ajax({
+                        url: '/ShowData/' + recordId, // Update this URL with your endpoint
+                        method: 'GET',
+                        success: function(response) {
+                            console.log('Response Data:', response);
+
+                            // Clear previous data
+                            $('#modal-content').empty();
+
+                            // Populate the modal with the fetched data
+                            if (response.length) {
+                                response.forEach(function(item) {
+                                    $('#modal-content').append(`
+                            <tr>
+                                <td>${item.jenis_barang}</td>
+                                <td>${item.merk_barang}</td>
+                                <td>${item.tipe_barang}</td>
+                                <td>${item.harga_barang}</td>
+                            </tr>
+                        `);
+                                });
+                            } else {
+                                $('#modal-content').html(
+                                    '<tr><td colspan="4">No data found.</td></tr>');
+                            }
+
+                            // Dynamically set the download URLs based on the record ID
+                            $('#download-document').attr('onclick',
+                                "window.location.href='/download/document/" + recordId + "'");
+                            $('#download-ktp').attr('onclick',
+                                "window.location.href='/download/ktp/" + recordId + "'");
+                            $('#download-stnk').attr('onclick',
+                                "window.location.href='/download/stnk/" + recordId + "'");
+                            $('#download-kk').attr('onclick',
+                                "window.location.href='/download/kk/" + recordId + "'");
+                        },
+                        error: function() {
+                            $('#modal-content').html(
+                                '<tr><td colspan="4">Error loading data.</td></tr>');
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <!-- Vendor JS Files -->
+        <script src="{{ asset('BizLand/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/php-email-form/validate.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/aos/aos.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+        <script src="{{ asset('BizLand/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+        <!-- Main JS File -->
+        <script src="{{ asset('BizLand/assets/js/main.js') }}"></script>
 
 </body>

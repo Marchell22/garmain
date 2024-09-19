@@ -24,10 +24,12 @@ Route::get('/Login', [LoginController::class, 'login'])->name('login');
 Route::post('/login-proses', [loginController::class, 'login_proses'])->name('login-proses');
 Route::get('/logout', [loginController::class, 'logout'])->name('logout');
 // Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth')->name('dashboard');
-
+Route::get('/dashboard', [PageController::class, 'dashboard'])
+    ->middleware('auth')
+    ->name('dashboard');
 // Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'web'], 'as' => 'admin.'], function () {
 //     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('dashboard');
 // });
+Route::get('/ShowData/{id}', [PageController::class, 'getData']);
+Route::get('/download/{type}/{id}', [PageController::class, 'download'])->name('download');
+

@@ -89,7 +89,7 @@
                         <li><a href="{{ route('index') }}#contact">Contact</a></li>
                         <li><a href="{{ route('calculator') }}">Calculator</a></li>
                         <li><a href="{{ route('PengajuanKredit') }}"class="active">Pengajuan Kredit</a></li>
-                         <li><a href="{{ route('login') }}">Login</a></li> 
+                        <li><a href="{{ route('login') }}">Login</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
@@ -125,6 +125,8 @@
                             <div id="">
                                 <div class="row">
                                     <div class="col-md-3 mb-3">
+                                        <input type="hidden" name="id_barang[]" value="1">
+                                        <!-- Hidden input for ID -->
                                         <input type="text" name="jenis_barang[]" class="form-control"
                                             placeholder="Jenis Barang" required>
                                     </div>
@@ -185,6 +187,8 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function() {
+            let itemIndex = 2; // Start indexing from 2
+
             // Get the CSRF token from the meta tag
             let csrfToken = $('meta[name="csrf-token"]').attr('content');
 
@@ -193,8 +197,10 @@
                 e.preventDefault();
                 let formData = new FormData(this); // Use FormData to capture all form data, including files
 
-                // Add the item details manually to the FormData object
+                // Add the item details manually to the FormData object, including the ID
                 $("input[name='jenis_barang[]']").each(function(index) {
+                    formData.append(`barang[${index}][id_barang]`, $("input[name='id_barang[]']")
+                        .eq(index).val()); // Add ID to JSON
                     formData.append(`barang[${index}][jenis_barang]`, $(this).val());
                     formData.append(`barang[${index}][merk_barang]`, $(
                         "input[name='merk_barang[]']").eq(index).val());
@@ -211,14 +217,13 @@
                     contentType: false, // Necessary for file upload
                     processData: false, // Necessary for file upload
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                            'content') // Include the CSRF token in the headers
+                        'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
                     },
                     success: function(response) {
                         // Handle success - redirect, show a message, etc.
                         console.log("Form submitted successfully!", response);
                         window.location.href = response
-                            .redirect_url; // Redirect to a success page or another route
+                        .redirect_url; // Redirect to a success page or another route
                     },
                     error: function(xhr, status, error) {
                         // Handle errors
@@ -227,39 +232,56 @@
                 });
             });
 
+            // Add new item
             $(".add_item_btn").click(function(e) {
                 e.preventDefault();
-                $("#show_item").prepend(
-                    `<div class="row">
+
+                // Append new item with incremented ID at the bottom
+                $("#show_item").append(
+                    `<div class="row item-row">
                     <div class="col-md-3 mb-3">
-                        <input type="text" name="jenis_barang[]" class="form-control" placeholder="Jenis Barang" required>
+                        <input type="hidden" name="id_barang[]" value="${itemIndex}"> <!-- Hidden input for ID -->
+                        <input type="text" id="jenis_barang_${itemIndex}" name="jenis_barang[]" class="form-control" placeholder="Jenis Barang" required>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <input type="text" name="merk_barang[]" class="form-control" placeholder="Merk Barang" required>
+                        <input type="text" id="merk_barang_${itemIndex}" name="merk_barang[]" class="form-control" placeholder="Merk Barang" required>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <input type="text" name="tipe_barang[]" class="form-control" placeholder="Tipe Barang" required>
+                        <input type="text" id="tipe_barang_${itemIndex}" name="tipe_barang[]" class="form-control" placeholder="Tipe Barang" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <input type="number" name="harga_barang[]" class="form-control" placeholder="Harga Kredit" required>
+                        <input type="number" id="harga_barang_${itemIndex}" name="harga_barang[]" class="form-control" placeholder="Harga Kredit" required>
                     </div>
                     <div class="col-md-2 mb-3 d-grid">
                         <button class="btn btn-danger remove_item_btn">Hapus</button>
                     </div>
                 </div>`
                 );
+
+                itemIndex++; // Increment the counter for the next ID
             });
 
+            // Handle item removal
             $(document).on('click', '.remove_item_btn', function(e) {
                 e.preventDefault();
-                let row_item = $(this).parent().parent();
-                $(row_item).remove();
+                $(this).closest('.item-row').remove();
+                updateItemIndices(); // Update indices after removal
             });
-        });
 
-        // Function to gather all form data
-       
+            // Function to update item IDs
+            function updateItemIndices() {
+                let newIndex = 2;
+                $(".item-row").each(function() {
+                    $(this).find("input[name='id_barang[]']").val(newIndex); // Update hidden ID input
+                    newIndex++; // Increment index
+                });
+                itemIndex = newIndex; // Update global itemIndex to the next available ID
+            }
+        });
     </script>
+
+
+
 
 
     <!-- Vendor JS Files -->

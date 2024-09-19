@@ -6,6 +6,8 @@ use App\Models\FileUpload;
 use App\Models\Kredit;
 use App\Models\PengajuanKredit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
@@ -105,6 +107,71 @@ class PageController extends Controller
     }
     public function dashboard()
     {
-        return view('admin.dashboard');
+        // Retrieves all records from the Kredit model
+        $data = Kredit::all();
+
+        // Check if $data is not empty and log it
+        if ($data->isNotEmpty()) {
+            foreach ($data as $record) {
+                // Convert uraian_barang to a string (assuming it's JSON or array)
+                $uraianString = is_array($record->uraian_barang) || is_object($record->uraian_barang)
+                    ? json_encode($record->uraian_barang)
+                    : (string) $record->uraian_barang;
+                Log::info('Kredit Record:', ['id' => $record->id, 'uraian_barang' => $record->uraian_barang]);
+            }
+        } else {
+            Log::info('No records found in Kredit model.');
+        }
+
+        // Assuming $uraian_barang is a field in the Kredit model, iterate over all records and extract the field if needed
+        $uraian = $data->pluck('uraian_barang')->toArray();
+
+        return view('admin.dashboard', compact('data', 'uraian'));
+    }
+    public function getData($id)
+    {
+        $record = Kredit::find($id);
+
+        if ($record) {
+            // Decode the JSON array from uraian_barang
+            $uraianItems = json_decode($record->uraian_barang, true);
+            return response()->json($uraianItems);
+        } else {
+            return response()->json([], 404);
+        }
+    }
+    public function download($type, $id)
+    {
+        // Fetch the record by ID
+        $kredit = Kredit::find($id);
+
+        if (!$kredit) {
+            return redirect()->back()->with('error', 'Record not found.');
+        }
+
+        // Determine which file to download based on the 'type'
+        switch ($type) {
+            case 'document':
+                $filePath = $kredit->document;
+                break;
+            case 'ktp':
+                $filePath = $kredit->ktp;
+                break;
+            case 'stnk':
+                $filePath = $kredit->stnk;
+                break;
+            case 'kk':
+                $filePath = $kredit->kk;
+                break;
+            default:
+                return redirect()->back()->with('error', 'Invalid file type.');
+        }
+
+        // Check if file exists
+        if ($filePath && Storage::exists($filePath)) {
+            return Storage::download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File not found.');
+        }
     }
 }
