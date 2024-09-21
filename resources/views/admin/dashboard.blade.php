@@ -215,6 +215,22 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="form-group row" style="padding: 10px;">
+                            <label class=" col-sm-12 col-md-2 col-form-label" for="document">BPKB</label>
+                            <div class="col-sm-12 col-md-10">
+                                <button type="button" class="btn btn-success" id="download-bpkb">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row" style="padding: 10px;">
+                            <label class=" col-sm-12 col-md-2 col-form-label" for="document">Slip Gaji</label>
+                            <div class="col-sm-12 col-md-10">
+                                <button type="button" class="btn btn-success" id="download-slipGaji">
+                                    Download
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -275,6 +291,10 @@
                                 "window.location.href='/download/stnk/" + recordId + "'");
                             $('#download-kk').attr('onclick',
                                 "window.location.href='/download/kk/" + recordId + "'");
+                            $('#download-bpkb').attr('onclick',
+                                "window.location.href='/download/bpkb/" + recordId + "'");
+                            $('#download-slipGaji').attr('onclick',
+                                "window.location.href='/download/slipGaji/" + recordId + "'");
                         },
                         error: function() {
                             $('#modal-content').html(

@@ -68,6 +68,8 @@ class PageController extends Controller
             'KTP' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
             'STNK' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
             'KK' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
+            'bpkb' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
+            'slipGaji' => 'nullable|file|mimes:pdf,doc,docx,jpg,png,jpeg',
         ]);
 
         // Storing the form data
@@ -94,6 +96,14 @@ class PageController extends Controller
         if ($request->hasFile('KK')) {
             $kkPath = $request->file('KK')->store('documents');
             $kredit->kk = $kkPath;
+        }
+        if ($request->hasFile('bpkb')) {
+            $bpkbPath = $request->file('bpkb')->store('documents');
+            $kredit->bpkb = $bpkbPath;
+        }
+        if ($request->hasFile('slipGaji')) {
+            $slipGajiPath = $request->file('slipGaji')->store('documents');
+            $kredit->slipGaji = $slipGajiPath;
         }
 
         // Save the record again to include file paths
@@ -162,6 +172,12 @@ class PageController extends Controller
                 break;
             case 'kk':
                 $filePath = $kredit->kk;
+                break;
+            case 'bpkb':
+                $filePath = $kredit->bpkb;
+                break;
+            case 'slipGaji':
+                $filePath = $kredit->slipGaji;
                 break;
             default:
                 return redirect()->back()->with('error', 'Invalid file type.');

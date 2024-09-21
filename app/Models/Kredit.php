@@ -18,6 +18,8 @@ class Kredit extends Model
         'ktp',
         'stnk',
         'kk',
+        'bpkb',
+        'slipGaji',
         'uraian_barang',
     ];
 

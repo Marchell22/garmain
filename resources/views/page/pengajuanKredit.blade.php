@@ -165,6 +165,14 @@
                                 Upload Kartu Keluarga : <br>
                                 <input type="file" id="KK" class="form-control" name="KK">
                             </div>
+                            <div class="md-6 pt-2" style="color: white">
+                                BPKB : <br>
+                                <input type="file" id="bpkb" class="form-control" name="bpkb">
+                            </div>
+                            <div class="md-6 pt-2" style="color: white">
+                                Slip Gaji : <br>
+                                <input type="file" id="slipGaji" class="form-control" name="slipGaji">
+                            </div>
                             <div>
                                 <input type="submit" name="submit" value="Tambah" class="btn btn-light w-25 mt-5"
                                     id="add-btn">
