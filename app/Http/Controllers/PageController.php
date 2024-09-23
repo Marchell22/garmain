@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\FileUpload;
 use App\Models\Kredit;
-use App\Models\PengajuanKredit;
 use Illuminate\Http\Request;
+use Twilio\Rest\Client; // Tambahkan ini untuk menggunakan Twilio Client
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
@@ -108,6 +107,8 @@ class PageController extends Controller
 
         // Save the record again to include file paths
         $kredit->save();
+        // Setelah berhasil simpan data, kirim pesan WhatsApp
+        $this->sendWhatsAppMessage($kredit);
 
         // Return a success response
         return response()->json([
@@ -115,6 +116,23 @@ class PageController extends Controller
             'redirect_url' => route('PengajuanKredit')
         ]);
     }
+    private function sendWhatsAppMessage($kredit)
+    {
+        $sid = env('TWILIO_SID');
+        $token = env('TWILIO_AUTH_TOKEN');
+        $twilio = new Client($sid, $token);
+
+        $message = "Pengajuan kredit berhasil!\nNama: " . $kredit->nama . "\nNomor KTP: " . $kredit->noKTP . "\nAlamat: " . $kredit->alamat;
+        
+        $twilio->messages->create(
+            env('TWILIO_WHATSAPP_TO'), // WhatsApp recipient number
+            [
+                'from' => env('TWILIO_WHATSAPP_FROM'), // Twilio WhatsApp number
+                'body' => $message
+            ]
+        );
+    }
+    
     public function dashboard()
     {
         // Retrieves all records from the Kredit model
