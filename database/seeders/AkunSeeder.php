@@ -15,8 +15,8 @@ class AkunSeeder extends Seeder
     public function run(): void
     {
         User::create([
-            'name' => 'Marchell',
-            'username' => 'Marchell22',
+            'name' => 'admin',
+            'username' => 'admin',
             'password' => Hash::make('abcd1234'),
         ]);
     }

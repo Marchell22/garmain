@@ -18,9 +18,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet" />
 
-    <!-- Favicons -->
-    <link href="{{ asset('Bizland/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('Bizland/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('Bizland/assets/img/icon-gar-2.png') }}" rel="icon">
+    <link href="{{ asset('Bizland/assets/img/icon-gar-2.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link
@@ -54,7 +53,10 @@
                 <div class="contact-info d-flex align-items-center">
                     {{-- <i class="bi bi-envelope d-flex align-items-center"><a
                             href="mailto:contact@example.com">contact@example.com</a></i> --}}
-                    <i class="bi bi-phone d-flex align-items-center ms-4"><span>0822-4980-4499</span></i>
+                   <a href="https://wa.me/6282249804499"style="color: white"  target="_blank">
+                        <i class="bi bi-phone d-flex align-items-center ms-4"><span>0822-4980-4499</span></i>
+
+                    </a>
                 </div>
                 <div class="social-links d-none d-md-flex align-items-center">
                     <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
@@ -68,10 +70,10 @@
         <div class="branding d-flex align-items-cente">
 
             <div class="container position-relative d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center">
+                <a href="" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <img src="{{ asset('BizLand/assets/img/logo-gar-3.png') }}" alt="">
-                    {{-- <h1 class="sitename">BizLand</h1> --}}
+                    <img src="{{ asset('Bizland/assets/img/logo-gar-3.png') }}" alt="">
+                    {{-- <h1 class="sitename">Bizland</h1> --}}
                 </a>
 
                 <nav id="navmenu" class="navmenu">
@@ -286,16 +288,16 @@
 
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('BizLand/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="{{ asset('BizLand/assets/js/main.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/js/main.js') }}"></script>
 </body>

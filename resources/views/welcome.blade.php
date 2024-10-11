@@ -9,8 +9,8 @@
     <meta name="keywords" content="">
 
     <!-- Favicons -->
-    <link href="{{ asset('Bizland/assets/img/favicon.png') }}" rel="icon">
-    <link href="{{ asset('Bizland/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+      <link href="{{ asset('Bizland/assets/img/icon-gar-2.png') }}" rel="icon">
+    <link href="{{ asset('Bizland/assets/img/icon-gar-2.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -30,8 +30,8 @@
     <link href="{{ asset('Bizland/assets/css/main.css') }}" rel="stylesheet">
 
     <!-- =======================================================
-  * Template Name: BizLand
-  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
+  * Template Name: Bizland
+  * Template URL: https://bootstrapmade.com/Bizland-bootstrap-business-template/
   * Updated: Aug 07 2024 with Bootstrap v5.3.3
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
@@ -61,10 +61,10 @@
         <div class="branding d-flex align-items-cente">
 
             <div class="container position-relative d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center">
+                <a href="" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <img src="{{ asset('BizLand/assets/img/logo-gar-3.png') }}" alt="">
-                    {{-- <h1 class="sitename">BizLand</h1> --}}
+                    <img src="{{ asset('Bizland/assets/img/logo-gar-3.png') }}" alt="">
+                    {{-- <h1 class="sitename">Bizland</h1> --}}
                 </a>
 
                 <nav id="navmenu" class="navmenu">
@@ -93,7 +93,7 @@
                 <div class="row gy-4">
                     <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
                         data-aos="zoom-out">
-                        <h1>Welcome to <span>BizLand</span></h1>
+                        <h1>Welcome to <span>Bizland</span></h1>
                         <p>We are team of talented designers making websites with Bootstrap</p>
                         <div class="d-flex">
                             <a href="#about" class="btn-get-started">Get Started</a>
@@ -168,7 +168,7 @@
                 <div class="row gy-3">
 
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('BizLand/assets/img/profil-global.png') }}" alt=""
+                        <img src="{{ asset('Bizland/assets/img/profil-global.png') }}" alt=""
                             class="img-fluid">
                     </div>
 
@@ -245,21 +245,21 @@
                     </div>
                     <div class="swiper-wrapper align-items-center">
 
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/1.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/1.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/2.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/2.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/3.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/3.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/4.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/4.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/5.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/5.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/6.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/6.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/7.png') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/7.png') }}"
                                 class="img-fluid" alt=""></div>
-                        <div class="swiper-slide"><img src="{{ asset('BizLand/assets/img/companies/8.jpg') }}"
+                        <div class="swiper-slide"><img src="{{ asset('Bizland/assets/img/companies/8.jpg') }}"
                                 class="img-fluid" alt=""></div>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
                 <div class="row gy-3">
 
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('BizLand/assets/img/Jual-Beli-Kendaraan-Motor-gar.png') }}" alt=""
+                        <img src="{{ asset('Bizland/assets/img/Jual-Beli-Kendaraan-Motor-gar.png') }}" alt=""
                             class="img-fluid">
                     </div>
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up"
@@ -302,7 +302,7 @@
                     </div>
 
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('BizLand/assets/img/Service-Motor-Mobil-gar.png') }}" alt=""
+                        <img src="{{ asset('Bizland/assets/img/Service-Motor-Mobil-gar.png') }}" alt=""
                             class="img-fluid">
                     </div>
 
@@ -330,7 +330,7 @@
 
                     </div>
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('BizLand/assets/img/layanan-kredit-kendaraan-dan-bpkb-gar.png') }}"
+                        <img src="{{ asset('Bizland/assets/img/layanan-kredit-kendaraan-dan-bpkb-gar.png') }}"
                             alt="" class="img-fluid">
                     </div>
 
@@ -352,7 +352,7 @@
 
                     </div>
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                        <img src="{{ asset('BizLand/assets/img/bg-gar.jpg') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('Bizland/assets/img/bg-gar.jpg') }}" alt="" class="img-fluid">
                     </div>
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up"
@@ -390,32 +390,32 @@
                     <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="{{ asset('BizLand/assets/img/masonry-portfolio/poster-gar.png') }}"
+                            <img src="{{ asset('Bizland/assets/img/masonry-portfolio/poster-gar.png') }}"
                                 class="img-fluid" alt="">
 
                         </div><!-- End Portfolio Item -->
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="{{ asset('BizLand/assets/img/masonry-portfolio/poster-gar-1.png') }}"
+                            <img src="{{ asset('Bizland/assets/img/masonry-portfolio/poster-gar-1.png') }}"
                                 class="img-fluid" alt="">
 
                         </div><!-- End Portfolio Item -->
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="{{ asset('BizLand/assets/img/masonry-portfolio/poster-gar-2.png') }}"
+                            <img src="{{ asset('Bizland/assets/img/masonry-portfolio/poster-gar-2.png') }}"
                                 class="img-fluid" alt="">
 
                         </div><!-- End Portfolio Item -->
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="{{ asset('BizLand/assets/img/masonry-portfolio/poster-gar-3.png') }}"
+                            <img src="{{ asset('Bizland/assets/img/masonry-portfolio/poster-gar-3.png') }}"
                                 class="img-fluid" alt="">
 
                         </div><!-- End Portfolio Item -->
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="{{ asset('BizLand/assets/img/masonry-portfolio/poster-gar-4.png') }}"
+                            <img src="{{ asset('Bizland/assets/img/masonry-portfolio/poster-gar-4.png') }}"
                                 class="img-fluid" alt="">
 
                         </div><!-- End Portfolio Item -->
                         <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                            <img src="{{ asset('BizLand/assets/img/masonry-portfolio/poster-gar-5.png') }}"
+                            <img src="{{ asset('Bizland/assets/img/masonry-portfolio/poster-gar-5.png') }}"
                                 class="img-fluid" alt="">
 
                         </div><!-- End Portfolio Item -->
@@ -485,8 +485,8 @@
         <div class="container footer-top d-flex justify-content-center">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="d-flex align-items-center">
-                        <span class="sitename">BizLand</span>
+                    <a href="" class="d-flex align-items-center">
+                        <span class="sitename">Bizland</span>
                     </a>
                     <div class="footer-contact pt-3">
                         <p>Kawasan Niaga, Jl. Soekarno Hatta Jl. MTC Barat No.590,</p>
@@ -501,7 +501,7 @@
                 </div>
 
                  <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="d-flex align-items-center">
+                    <a href="" class="d-flex align-items-center">
                         <span class="sitename">Follow Us</span>
                     </a>
                     <div class="social-links d-flex">
@@ -531,18 +531,18 @@
   </div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('BizLand/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/php-email-form/validate.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('BizLand/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/aos/aos.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
     <!-- Main JS File -->
-    <script src="{{ asset('BizLand/assets/js/main.js') }}"></script>
+    <script src="{{ asset('Bizland/assets/js/main.js') }}"></script>
 
 </body>
 
