@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Twilio\Rest\Client; // Tambahkan ini untuk menggunakan Twilio Client
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Services\FonnteService;
+
 
 class PageController extends Controller
 {
@@ -112,7 +114,7 @@ class PageController extends Controller
 
         // Return a success response
         return response()->json([
-            'message' => 'Data successfully created.',
+            'message' => 'Data Berhasil Dikirim',
             'redirect_url' => route('PengajuanKredit')
         ]);
     }
