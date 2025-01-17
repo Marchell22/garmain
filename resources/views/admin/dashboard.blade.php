@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Global Auto Finance</title>
+    <title>BCA Finance</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -23,8 +23,8 @@
     <!-- Bootstrap JS (for modal functionality) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link href="{{ asset('Bizland/assets/img/icon-gar-2.png') }}" rel="icon">
-    <link href="{{ asset('Bizland/assets/img/icon-gar-2.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('Bizland/assets/img//bca-finance-seeklogo.png') }}" rel="icon">
+    <link href="{{ asset('Bizland/assets/img/bca-finance-seeklogo.png') }}" rel="apple-touch-icon">
 
     <!-- Fonts -->
     <link
@@ -78,31 +78,14 @@
 
     <header id="header" class="header sticky-top">
 
-        <div class="topbar d-flex align-items-center">
-            <div class="container d-flex justify-content-center justify-content-md-between">
-                <div class="contact-info d-flex align-items-center">
-                    {{-- <i class="bi bi-envelope d-flex align-items-center"><a
-                            href="mailto:contact@example.com">contact@example.com</a></i> --}}
-                <a href="https://wa.me/6282249804499"style="color: white"  target="_blank">
-                        <i class="bi bi-phone d-flex align-items-center ms-4"><span>0822-4980-4499</span></i>
-
-                    </a>
-                </div>
-                <div class="social-links d-none d-md-flex align-items-center">
-                    <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                </div>
-            </div>
-        </div><!-- End Top Bar -->
+       
 
         <div class="branding d-flex align-items-cente">
 
             <div class="container position-relative d-flex align-items-center justify-content-between">
                 <a href="" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
-                    <img src="{{ asset('Bizland/assets/img/logo-gar-3.png') }}" alt="">
+                    <img src="{{ asset('Bizland/assets/img//bca-finance-seeklogo.png') }}" alt="">
                     {{-- <h1 class="sitename">Bizland</h1> --}}
                 </a>
 

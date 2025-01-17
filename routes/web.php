@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'index'])->name('index');
-Route::get('/calculator', [PageController::class, 'calculator'])->name('calculator');
-Route::post('/credit-simulation', [PageController::class, 'calculate'])->name('credit.simulation.calculate');
-Route::get('/PengajuanKredit', [PageController::class, 'PengajuanKredit'])->name('PengajuanKredit');
+
+Route::get('/', [PageController::class, 'PengajuanKredit'])->name('PengajuanKredit');
 Route::post('/kredit/store', [PageController::class, 'store'])->name('kredit.store');
 Route::get('/Login', [LoginController::class, 'login'])->name('login');
 Route::post('/login-proses', [loginController::class, 'login_proses'])->name('login-proses');
